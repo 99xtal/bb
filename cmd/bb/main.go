@@ -18,9 +18,11 @@ const (
 )
 
 func run() exitCode {
-   ctx := context.Background()
+  buildVersion := "DEV"
+  buildDate := ""
+  ctx := context.Background()
 
-  rootCmd, err := root.NewCmdRoot()
+  rootCmd, err := root.NewCmdRoot(buildVersion, buildDate)
   if err != nil {
     fmt.Fprintf(os.Stderr, "failed to create root command: %s\n", err)
     return exitError
