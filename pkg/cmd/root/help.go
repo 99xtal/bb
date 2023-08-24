@@ -12,7 +12,19 @@ type helpEntry struct {
   Body string
 }
 
+func isRootCmd(command *cobra.Command) bool {
+  return command != nil && !command.HasParent()
+}
+
 func rootHelpFunc(command *cobra.Command, args []string) {
+  flags := command.Flags()
+
+  if isRootCmd(command) {
+    if versionVal, err := flags.GetBool("version"); err == nil && versionVal {
+      fmt.Fprintf(os.Stdout, command.Annotations["versionInfo"])
+      return
+    } 
+  }
   helpEntries := []helpEntry{}
 
   helpEntries = append(helpEntries, helpEntry{"", command.Long})
