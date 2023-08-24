@@ -4,7 +4,8 @@ import (
   "context"
   "fmt"
   "os"
-  
+
+  "github.com/99xtal/bb/internal/build"
   "github.com/99xtal/bb/pkg/cmd/root"
 )
 
@@ -18,8 +19,8 @@ const (
 )
 
 func run() exitCode {
-  buildVersion := "DEV"
-  buildDate := ""
+  buildVersion := build.Version
+  buildDate := build.Date
   ctx := context.Background()
 
   rootCmd, err := root.NewCmdRoot(buildVersion, buildDate)
