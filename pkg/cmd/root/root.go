@@ -15,7 +15,7 @@ func NewCmdRoot(version string, buildDate string) (*cobra.Command, error) {
     },
   }
 
-  cmd.Flags().Bool("version", false, "Show bb version")
+  cmd.Flags().BoolP("version", "v", false, "Show bb version")
   cmd.SetHelpFunc(rootHelpFunc)
 
   cmd.AddCommand(versionCmd.NewCmdVersion())
